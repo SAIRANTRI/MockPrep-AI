@@ -4,3 +4,5 @@ ignoredBuiltDependencies:
 
 onlyBuiltDependencies:
   - '@clerk/shared'
+  - '@firebase/util'
+  - protobufjs
