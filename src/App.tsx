@@ -10,7 +10,6 @@ import { SignUpPage } from "./routes/sign-up";
 import ProtectRoutes from "./layouts/protected-routes";
 import { MainLayout } from "./layouts/main-layout";
 
-
 const App = () => {
   return (
     <Router>
