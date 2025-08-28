@@ -42,9 +42,7 @@ const formSchema = z.object({
     .min(1, "Position is required")
     .max(100, "Position must be 100 characters or less"),
   description: z.string().min(10, "Description is required"),
-  experience: z.coerce
-    .number()
-    .min(0, "Experience cannot be empty or negative"),
+  experience: z.number("Experience must be a number").min(0, "Experience cannot be empty or negative"),
   techStack: z.string().min(1, "Tech stack must be at least a character"),
 });
 
@@ -53,7 +51,12 @@ type FormData = z.infer<typeof formSchema>;
 export const FormMockInterview = ({ initialData }: FormMockInterviewProps) => {
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
-    defaultValues: initialData || {},
+    defaultValues: {
+    position: initialData?.position ?? "",
+  description: initialData?.description ?? "",
+  experience: initialData?.experience ?? 0,
+  techStack: initialData?.techStack ?? "",
+  },
   });
 
   const { isValid, isSubmitting } = form.formState;
